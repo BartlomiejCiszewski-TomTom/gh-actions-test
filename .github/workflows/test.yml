@@ -1,0 +1,23 @@
+name: Persist variables
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_acq:
+        description: 'Automatically deploy to Acquia staging'
+        type: boolean
+        default: true
+      documentation_access_check:
+        description: 'Enable documentation access check for this build'
+        type: boolean
+        default: false
+      enable_company_account_view:
+        description: 'Toggle Company Account for the upcoming builds'
+        type: boolean
+        default: true
+jobs:
+  persist_variables:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check for saved variables
+      run: echo 'Hello'
