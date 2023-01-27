@@ -14,13 +14,13 @@ on:
       enable_company_account_view:
         description: 'Toggle Company Account for the upcoming builds'
         type: boolean
-        default: ${{ steps.persisted-company.outputs.GATSBY_IS_COMPANY_ENABLED }}
+        default: ${{ env.GATSBY_IS_COMPANY_ENABLED }}
 jobs:
   persist_variables:
     runs-on: ubuntu-latest
     steps:
     - name: Set output variable
       id: persisted-company
-      run: echo "GATSBY_IS_COMPANY_ENABLED=${{ inputs.enable_company_account_view }}" >> $GITHUB_OUTPUT
+      run: echo "GATSBY_IS_COMPANY_ENABLED=${{ inputs.enable_company_account_view }}" >> $GITHUB_ENV
     - name: Get color
-      run: echo "${{ steps.persisted-company.outputs.GATSBY_IS_COMPANY_ENABLED }}"
+      run: echo "${{ inputs.enable_company_account_view }}"
